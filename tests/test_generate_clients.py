@@ -24,3 +24,11 @@ def test_etudiants_plus_fragiles_que_salaries():
         lambda x: (x == "fragile_des_le_depart").mean()
     )
     assert taux_fragile["etudiant"] > taux_fragile["salarie"]
+
+
+def test_age_coherent_avec_statut_pro():
+    df = generate_clients(3000, seed=1)
+    age_moyen = df.groupby("statut_pro")["age"].mean()
+    assert age_moyen["etudiant"] < 30
+    assert age_moyen["retraite"] > 55
+    assert age_moyen["etudiant"] < age_moyen["salarie"] < age_moyen["retraite"]

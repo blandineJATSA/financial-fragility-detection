@@ -18,6 +18,29 @@ permettre une action préventive plutôt que réactive.
 prochains mois, alors qu'il ne l'est pas encore au mois M. Le split
 entraînement/test se fait par le temps, jamais aléatoirement.
 
+## Définition opérationnelle de `fragile_legal` (données synthétiques)
+
+Le vrai critère légal combine plusieurs éléments (dossier de surendettement,
+inscription FCC de 3 mois, incidents répétés, 5 incidents/mois combinés à un
+critère de ressources). Nos données synthétiques ne modélisent pas
+explicitement l'inscription FCC ni le dossier de surendettement — on
+approxime donc `fragile_legal` avec deux critères combinés (OU logique) :
+
+1. **Au moins 5 incidents de paiement dans le mois, combinés à des revenus
+   sous 1500€** (proxy du critère de ressources modestes — hypothèse
+   assumée, pas une valeur réglementaire officielle)
+2. **Au moins un incident de paiement pendant 3 mois consécutifs** (proxy
+   de l'inscription FCC, qu'on ne génère pas explicitement)
+
+Constat empirique sur les données générées : le critère 1 ne se déclenche
+que dans 0.6% des cas (5 incidents simultanés reste un événement rare avec
+notre paramétrage), tandis que le critère 2 (persistance) porte l'essentiel
+de la détection à 11%. C'est cohérent avec l'esprit du texte réglementaire,
+où la répétition d'incidents compte autant qu'un pic isolé.
+
+Distribution finale : `fragile_legal` = 11.2% des mois observés,
+`target_fragile_j3m` = 8.3% — une cible ni trop rare ni trop fréquente pour
+être exploitable par un modèle.
 ## Vocabulaire à tenir
 
 Ne jamais présenter le modèle comme décidant qu'un client "est fragile" — parler
