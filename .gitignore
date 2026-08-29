@@ -19,6 +19,10 @@ __pycache__/
 data/raw/*
 data/interim/*
 data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+*.parquet
+*.key
 
 # Modèles générés
 models/
@@ -27,6 +31,8 @@ artifacts/
 # Secrets GCP
 *.json
 !data/*.json
+infra/gcp/service-account.json
+dbt_project/profiles.yml
 
 # Système
 .DS_Store
@@ -35,3 +41,8 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
+
+logs/
+.DS_Store
+.ipynb_checkpoints/
