@@ -1,0 +1,11 @@
+finprev:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: your-gcp-project
+      dataset: finprev
+      keyfile: /path/absolu/vers/infra/gcp/service-account.json
+      threads: 4
+      location: EU

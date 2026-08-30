@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: stg_clients
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_transactions
+    columns:
+      - name: client_id
+        tests:
+          - not_null

@@ -25,7 +25,6 @@ data/processed/*
 *.key
 
 # Modèles générés
-models/
 artifacts/
 
 # Secrets GCP
@@ -46,3 +45,8 @@ Thumbs.db
 logs/
 .DS_Store
 .ipynb_checkpoints/
+
+# dbt
+dbt_project/target/
+dbt_project/logs/
+dbt_project/dbt_packages/
