@@ -50,3 +50,6 @@ logs/
 dbt_project/target/
 dbt_project/logs/
 dbt_project/dbt_packages/
+
+# Modeles ML serialises
+ml_artifacts/
