@@ -36,7 +36,10 @@ with_lags_and_deltas as (
             rows between 2 preceding and current row
         ) as nb_decouverts_roll3,
 
-        safe_divide(depenses_contraintes, nullif(revenus_entrants, 0)) as ratio_charges_revenu
+        -- Plafonne a 3.0 : au-dela, c'est deja une detresse financiere extreme,
+        -- le plafond evite que quelques valeurs aberrantes (revenu quasi nul un mois)
+        -- n'ecrasent l'echelle du ratio pour tous les autres clients
+        least(safe_divide(depenses_contraintes, nullif(revenus_entrants, 0)), 3.0) as ratio_charges_revenu
 
     from transactions
 )
