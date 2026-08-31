@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: fct_client_monthly_features
+    columns:
+      - name: client_id
+        tests:
+          - not_null
+      - name: mois
+        tests:
+          - not_null
+      - name: target_fragile_j3m
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1]
+              quote: false
