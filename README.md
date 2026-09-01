@@ -45,7 +45,7 @@ Ce projet utilise exclusivement des **données synthétiques**, générées pour
 
 Dashboard Streamlit à 2 pages : vue de portefeuille et profil client individuel avec explicabilité SHAP.
 
-**Lien** : *(à venir après déploiement — Streamlit Community Cloud)*
+**Lien** : [financial-fragility-detection.streamlit.app](https://financial-fragility-detection.streamlit.app)
 
 ![Vue globale du dashboard](docs/assets/dashboard_vue_globale.png)
 
