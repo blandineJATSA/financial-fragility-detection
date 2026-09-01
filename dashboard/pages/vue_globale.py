@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from google.cloud import bigquery
+from utils.bq_client import get_bq_client
 
 PROJECT_ID = "finprev-portfolio"
 DATASET = "finprev"
@@ -9,7 +9,7 @@ DATASET = "finprev"
 
 @st.cache_data(ttl=3600)
 def load_scores():
-    client = bigquery.Client(project=PROJECT_ID)
+    client = get_bq_client()
     query = f"""
     SELECT *
     FROM `{PROJECT_ID}.{DATASET}.fct_client_risk_scores`
