@@ -27,11 +27,12 @@ nb_signaux_ce_mois = df[df["mois"] == df["mois"].max()]["prediction"].sum()
 nb_incidents_legaux = df["fragile_legal"].sum()
 taux_couverture = df["target_reel"].mean() * 100
 
+
 col1, col2, col3, col4 = st.columns(4)
-col1.metric("Clients suivis", f"{nb_clients:,}")
-col2.metric("Signaux détectés (dernier mois)", f"{int(nb_signaux_ce_mois)}")
-col3.metric("Mois-clients en fragilité légale", f"{int(nb_incidents_legaux)}")
-col4.metric("Taux de couverture cible", f"{taux_couverture:.1f}%")
+col1.metric("Clients suivis", f"{nb_clients:,}".replace(",", " "))
+col2.metric("Signaux détectés (dernier mois)", f"{int(nb_signaux_ce_mois):,}".replace(",", " "))
+col3.metric("Mois-clients en fragilité légale", f"{int(nb_incidents_legaux):,}".replace(",", " "))
+col4.metric("Taux de couverture cible", f"{taux_couverture:.1f}%".replace(".", ","))
 
 st.divider()
 
@@ -66,6 +67,7 @@ with col_right:
             "eleve": "#B8631E", "critique": "#B33F1E",
         },
     )
+    fig2.update_yaxes(rangemode="tozero")
     st.plotly_chart(fig2, use_container_width=True)
 
 st.divider()

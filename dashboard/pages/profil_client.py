@@ -50,7 +50,7 @@ with col1:
                 {dernier_mois['niveau_vigilance'].capitalize()}
             </div>
             <div style="color:{couleur}; font-size: 1.2rem;">
-                {dernier_mois['score_vigilance']:.1f} / 100
+                {str(round(dernier_mois['score_vigilance'], 1)).replace('.', ',')} / 100
             </div>
         </div>
         """,
@@ -82,7 +82,7 @@ st.plotly_chart(fig, use_container_width=True)
 col1, col2, col3 = st.columns(3)
 col1.metric("Incidents (dernier mois)", int(dernier_mois["nb_incidents_paiement"]))
 col2.metric("Découverts (dernier mois)", int(dernier_mois["nb_decouverts"]))
-col3.metric("Ratio charges/revenu", f"{dernier_mois['ratio_charges_revenu']:.2f}")
+col3.metric("Ratio charges/revenu", str(round(dernier_mois['ratio_charges_revenu'], 2)).replace('.', ','))
 
 st.divider()
 

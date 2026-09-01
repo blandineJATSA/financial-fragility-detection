@@ -1,10 +1,3 @@
-Bon exemple à suivre — la structure est claire, orientée résultats concrets, et le ton "j'ai résolu un vrai problème métier" plutôt que "voici ma stack technique" est exactement ce qui distingue un projet portfolio efficace. On adapte cette structure à notre sujet, avec nos vrais chiffres.
-
-**Pour les images** : je ne peux pas extraire tes captures d'écran directement dans le repo — sauvegarde tes 2 meilleures captures (vue globale + profil client) dans un nouveau dossier `docs/assets/`, nommées `dashboard_vue_globale.png` et `dashboard_profil_client.png`. Je référence ces chemins dans le README ci-dessous.
-
-Voici le contenu complet à mettre dans `README.md` (remplace tout) :
-
-```markdown
 # FinPrev — Détection précoce de fragilité financière
 
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
@@ -55,7 +48,6 @@ Dashboard Streamlit à 2 pages : vue de portefeuille et profil client individuel
 **Lien** : *(à venir après déploiement — Streamlit Community Cloud)*
 
 ![Vue globale du dashboard](docs/assets/dashboard_vue_globale.png)
-![Profil client avec explicabilité](docs/assets/dashboard_profil_client.png)
 
 ## Résultats
 
@@ -87,7 +79,7 @@ Chaque score individuel est explicable (waterfall SHAP), directement affiché da
 
 Flux de données complet :
 
-```
+
 Génération synthétique (Python)
         ↓
 GCS (landing zone)
@@ -101,7 +93,6 @@ Modèle XGBoost + SHAP
 Scores écrits dans BigQuery
         ↓
 Dashboard Streamlit
-```
 
 Orchestré de bout en bout par un DAG Airflow, exécuté dans Docker Compose en local.
 
@@ -111,7 +102,7 @@ Python · Google Cloud Storage · BigQuery · dbt-core (adapter BigQuery) · Apa
 
 ## Structure du repo
 
-```
+
 data_generation/    -> génération des données synthétiques
 dbt_project/        -> transformation SQL (staging/intermediate/marts)
 dags/               -> DAG Airflow
@@ -122,7 +113,7 @@ notebooks/           -> exploration et entraînement (jamais en production)
 docs/                -> documentation métier, architecture, éthique
 tests/               -> tests unitaires (génération de données)
 .github/workflows/   -> intégration continue
-```
+
 
 ## Documentation clé
 
@@ -170,4 +161,3 @@ cd infra && docker compose -p finprev up -d
 - **Déséquilibre train/test documenté** (6.2 % à 11.7 % de taux positif selon la période), lié à la distribution du mois de bascule dans le générateur — voir [docs/07_data_exploration_notes.md](docs/07_data_exploration_notes.md)
 - **Un seul environnement** (pas de séparation dev/prod), authentification via clé de service account locale plutôt qu'un système de secrets managés — limite assumée pour un projet portfolio
 - **Prochaine priorité** : déploiement public du dashboard, puis exploration d'un réentraînement périodique orchestré par le DAG existant
-```
