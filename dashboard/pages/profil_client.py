@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
-from google.cloud import bigquery
+from utils.bq_client import get_bq_client
 
 PROJECT_ID = "finprev-portfolio"
 DATASET = "finprev"
@@ -9,7 +9,7 @@ DATASET = "finprev"
 
 @st.cache_data(ttl=3600)
 def load_client_history():
-    client = bigquery.Client(project=PROJECT_ID)
+    client = get_bq_client()
     query = f"""
     SELECT
         s.client_id, s.mois, s.score_vigilance, s.niveau_vigilance,

@@ -54,3 +54,7 @@ dbt_project/dbt_packages/
 # Modeles ML serialises
 ml_artifacts/
 infra/dbt_profiles/profiles.yml
+
+.streamlit/secrets.toml
+
+dashboard/.streamlit/secrets.toml
